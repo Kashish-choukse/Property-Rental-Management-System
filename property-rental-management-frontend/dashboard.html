@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Property Rental Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Property Rental Management</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="my-rentals.html">My Rentals</a>
+        <a href="add-property.html" id="addPropertyLink">Add Property</a>
+        <a href="#" id="logoutLink">Logout</a>
+    </nav>
+
+    </header>
+
+    <main>
+
+        <section class="dashboard">
+
+            <h2>Welcome, <span id="userName"></span>!</h2>
+            <p class="dashboard-text">
+                Here you can view your account details and manage your activities.
+            </p>
+
+            <div class="user-info">
+
+                <p>
+                    <strong>Email:</strong>
+                    <span id="userEmail"></span>
+                </p>
+
+                <p>
+                    <strong>Role:</strong>
+                    <span id="userRole"></span>
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    <span id="userPhone"></span>
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Property Rental Management System</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

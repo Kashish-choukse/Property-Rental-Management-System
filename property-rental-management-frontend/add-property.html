@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Property - Property Rental Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Property Rental Management</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="#" id="logoutLink">Logout</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="login-container">
+
+            <h2>Add Property</h2>
+
+            <form id="propertyForm">
+
+                <div class="form-group">
+
+                    <label for="propertyName">
+                        Property Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="propertyName"
+                        placeholder="Enter property name"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="propertyLocation">
+                        Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="propertyLocation"
+                        placeholder="Enter location"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="propertyType">
+                        Property Type
+                    </label>
+
+                    <select id="propertyType" required>
+
+                        <option value="">Select type</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Flat">Flat</option>
+                        <option value="House">House</option>
+                        <option value="Villa">Villa</option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="bedrooms">
+                        Bedrooms
+                    </label>
+
+                    <input
+                        type="number"
+                        id="bedrooms"
+                        min="0"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="bathrooms">
+                        Bathrooms
+                    </label>
+
+                    <input
+                        type="number"
+                        id="bathrooms"
+                        min="0"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="area">
+                        Area (sq.ft)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="area"
+                        min="0"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="rent">
+                        Monthly Rent
+                    </label>
+
+                    <input
+                        type="number"
+                        id="rent"
+                        min="1"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="status">
+                        Status
+                    </label>
+
+                    <select id="status" required>
+
+                        <option value="AVAILABLE">
+                            AVAILABLE
+                        </option>
+
+                        <option value="RENTED">
+                            RENTED
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="description">
+                        Description
+                    </label>
+
+                    <textarea
+                        id="description"
+                        placeholder="Enter property description"
+                        rows="4"></textarea>
+
+                </div>
+
+                <button type="submit">
+                    Add Property
+                </button>
+
+                <p id="propertyMessage"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Property Rental Management System</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

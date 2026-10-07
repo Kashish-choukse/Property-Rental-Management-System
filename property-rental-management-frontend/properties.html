@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Properties - Property Rental Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Property Rental Management</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="properties">
+
+           <h2>Available Properties</h2>
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="locationSearch"
+        placeholder="Search by location">
+
+    <select id="propertyType">
+
+        <option value="">All Types</option>
+
+        <option value="Apartment">Apartment</option>
+
+        <option value="Flat">Flat</option>
+
+        <option value="House">House</option>
+
+        <option value="Villa">Villa</option>
+
+    </select>
+
+    <input
+        type="number"
+        id="maxRent"
+        placeholder="Maximum rent">
+
+    <button id="searchButton">Search</button>
+
+</div>
+
+<div id="propertyList"></div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Property Rental Management System</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

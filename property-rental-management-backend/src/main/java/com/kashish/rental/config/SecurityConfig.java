@@ -1,0 +1,145 @@
+package com.kashish.rental.config;
+
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import org.springframework.http.HttpMethod;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.kashish.rental.security.JwtAuthenticationFilter;
+
+
+
+@Configuration
+public class SecurityConfig {
+
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(
+            JwtAuthenticationFilter jwtAuthenticationFilter) {
+
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
+
+    @Bean
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http) throws Exception {
+
+        http
+        .csrf(csrf -> csrf.disable())
+
+        .cors(cors ->
+            cors.configurationSource(corsConfigurationSource())
+        )
+
+            .sessionManagement(session ->
+                session.sessionCreationPolicy(
+                    SessionCreationPolicy.STATELESS
+                )
+            )
+
+            .exceptionHandling(exception ->
+            exception
+                .authenticationEntryPoint(
+                    new HttpStatusEntryPoint(
+                        HttpStatus.UNAUTHORIZED
+                    )
+                )
+                .accessDeniedHandler((request, response, ex) ->
+                    response.setStatus(HttpStatus.FORBIDDEN.value())
+                )
+        )
+
+            .authorizeHttpRequests(auth -> auth
+
+                .requestMatchers("/api/users/login").permitAll()
+
+                .requestMatchers(HttpMethod.POST, "/api/users").permitAll()
+
+                .requestMatchers(HttpMethod.GET,
+                        "/api/properties/**").hasAnyRole("OWNER", "TENANT")
+
+                .requestMatchers(HttpMethod.POST,
+                        "/api/properties/**").hasRole("OWNER")
+
+                .requestMatchers(HttpMethod.PUT,
+                        "/api/properties/**").hasRole("OWNER")
+
+                .requestMatchers(org.springframework.http.HttpMethod.DELETE,
+                        "/api/properties/**").hasRole("OWNER")
+
+
+                .requestMatchers(org.springframework.http.HttpMethod.GET,
+                        "/api/rentals/**").hasAnyRole("OWNER", "TENANT")
+
+                .requestMatchers(HttpMethod.POST,
+                        "/api/rentals/**").hasRole("TENANT")
+
+                .requestMatchers(HttpMethod.PUT,
+                        "/api/rentals/**").hasAnyRole("OWNER", "TENANT")
+
+                .requestMatchers(HttpMethod.DELETE,
+                        "/api/rentals/**").hasAnyRole("OWNER", "TENANT")
+
+                .anyRequest().authenticated()
+            )
+
+            .addFilterBefore(
+                jwtAuthenticationFilter,
+                UsernamePasswordAuthenticationFilter.class
+            );
+
+        return http.build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+    
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.setAllowedOrigins(
+                List.of("http://127.0.0.1:5500")
+        );
+
+        configuration.setAllowedMethods(
+                List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
+        );
+
+        configuration.setAllowedHeaders(
+                List.of("*")
+        );
+
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+
+        source.registerCorsConfiguration(
+                "/**",
+                configuration
+        );
+
+        return source;
+    }
+}

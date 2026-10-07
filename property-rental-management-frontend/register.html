@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register - Property Rental Management</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Property Rental Management</h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="properties.html">Properties</a>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section class="login-container">
+
+            <h2>Create Account</h2>
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="registerName">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registerEmail"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registerPassword"
+                        placeholder="Enter password"
+                        required>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerPhone">
+                        Phone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerPhone"
+                        placeholder="Enter 10 digit phone number"
+                        required>
+
+                </div>
+
+                <button type="submit">
+                    Register
+                </button>
+
+                <p id="registerMessage"></p>
+                <p class="form-link">
+                    Already have an account?
+                <a href="login.html">Login here</a>
+</p>
+            </form>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Property Rental Management System</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
